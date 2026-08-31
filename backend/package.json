@@ -1,0 +1,29 @@
+{
+  "name": "runpipe-backend",
+  "private": true,
+  "license": "MIT",
+  "author": "Aonic GmbH",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "node index.js",
+    "prestart": "node scripts/free-port.js",
+    "dev": "node --watch index.js",
+    "predev": "node scripts/free-port.js",
+    "db:migrate": "node scripts/migrate.js",
+    "db:seed": "node scripts/seed.js",
+    "test": "node --test --test-force-exit \"tests/**/*.test.js\"",
+    "test:unit": "node --test --test-force-exit tests/agentCredits.test.js tests/componentsImport.test.js tests/branding.test.js",
+    "test:e2e": "node --test --test-force-exit tests/agentCostApi.e2e.test.js tests/projectsApi.e2e.test.js tests/tenantBrandingApi.e2e.test.js",
+    "start:e2e": "node index.js"
+  },
+  "dependencies": {
+    "@azure/identity": "^4.13.1",
+    "@azure/msal-node": "^3.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.3",
+    "jwks-rsa": "^4.1.0",
+    "pg": "^8.22.0"
+  }
+}

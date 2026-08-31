@@ -1,0 +1,85 @@
+name: Test
+
+on:
+  pull_request:
+    paths:
+      - "frontend/**"
+      - "backend/**"
+      - "e2e/**"
+      - "playwright.config.ts"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/test.yml"
+  push:
+    branches: [main, dev]
+    paths:
+      - "frontend/**"
+      - "backend/**"
+      - "e2e/**"
+      - "playwright.config.ts"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/test.yml"
+  workflow_dispatch:
+
+jobs:
+  unit-and-api:
+    runs-on: ubuntu-latest
+    name: Unit + API tests
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: |
+          rm -f package-lock.json
+          npm install
+
+      - name: Frontend unit tests
+        run: npm run test -w frontend
+
+      - name: Backend unit + API e2e
+        run: npm test -w backend
+        env:
+          USE_MEMORY_STORE: "1"
+          DATABASE_URL: ""
+          ENTRA_TENANT_ID: your-test-tenant
+          ENTRA_CLIENT_ID: your-test-client
+          DEFAULT_TENANT_ID: t1
+
+  browser-e2e:
+    runs-on: ubuntu-latest
+    name: Playwright browser e2e
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: |
+          rm -f package-lock.json
+          npm install
+
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium --with-deps
+
+      - name: Run browser e2e
+        run: npm run test:e2e
+        env:
+          CI: "true"
+          USE_MEMORY_STORE: "1"
+          DATABASE_URL: ""
+          ENTRA_TENANT_ID: your-test-tenant
+          ENTRA_CLIENT_ID: your-test-client
+          DEFAULT_TENANT_ID: t1
+          VITE_MOCK_MODE: "false"
+          VITE_API_BASE_URL: http://127.0.0.1:7072
+          VITE_ENTRA_CLIENT_ID: ""
+          VITE_ENTRA_TENANT_ID: ""
+          E2E_BACKEND_PORT: "7072"
+          E2E_FRONTEND_PORT: "8081"

@@ -1,0 +1,43 @@
+name: Deploy Backend (App Service)
+
+# Deploys via publish profile (SCM basic auth must be enabled on the app).
+# Re-run after refreshing the publish-profile secret.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "backend/**"
+      - ".github/workflows/backend.yml"
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    name: Build and deploy backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # This is an npm-workspaces monorepo, so running `npm install` inside
+      # `backend` hoists dependencies to the repo-root node_modules. Deploying
+      # the `backend` folder alone would then ship ZERO dependencies and the
+      # app would crash on boot (MODULE_NOT_FOUND). To avoid that, copy the
+      # backend OUT of the workspace and install there so node_modules is
+      # fully self-contained, then deploy that staged folder.
+      - name: Build self-contained backend package
+        run: |
+          rsync -a --exclude node_modules --exclude '.env' backend/ "$RUNNER_TEMP/backend-deploy/"
+          cd "$RUNNER_TEMP/backend-deploy"
+          npm install --omit=dev --no-package-lock
+          test -d node_modules/@azure/identity || (echo "::error::@azure/identity missing after install" && exit 1)
+          test -d node_modules/express || (echo "::error::express missing after install" && exit 1)
+
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ vars.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ${{ runner.temp }}/backend-deploy

@@ -1,0 +1,30 @@
+{
+  "name": "runpipe",
+  "private": true,
+  "version": "0.0.0",
+  "license": "MIT",
+  "author": "Aonic GmbH",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w frontend",
+    "dev:backend": "npm run dev -w backend",
+    "dev:all": "concurrently -n backend,frontend -c blue,green \"npm run dev:backend\" \"npm run dev\"",
+    "build": "npm run build -w frontend",
+    "build:dev": "npm run build:dev -w frontend",
+    "lint": "npm run lint -w frontend",
+    "preview": "npm run preview -w frontend",
+    "test": "npm run test -w frontend && npm test -w backend",
+    "test:unit": "npm run test -w frontend && npm run test:unit -w backend",
+    "test:watch": "npm run test:watch -w frontend",
+    "test:e2e": "playwright test",
+    "test:e2e:install": "playwright install chromium",
+    "setup:azure": "node infra/setup.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "concurrently": "^10.0.3"
+  }
+}
