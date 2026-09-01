@@ -68,12 +68,11 @@ per-agent subscription. Agent Governance 365 takes a different approach:
   ongoing cost is the Azure infrastructure you're already running.
 - **Built on your existing trust boundary** — it signs in through the
   Microsoft Entra ID tenant you already have and reads Power Platform, Power
-  BI, CoE Starter Kit, and Copilot Agent Kit data through Microsoft's own
-  APIs, rather than requiring a new external consent grant.
+  BI, and Copilot Agent Kit data through Microsoft's own APIs, rather than
+  requiring a new external consent grant.
 - **One inventory across sources, not five admin centers** — Power Platform,
-  Power BI/Fabric, CoE Starter Kit, and Copilot Agent Kit usage land in a
-  single, searchable, permission-aware view instead of separate exports you
-  reconcile by hand.
+  Power BI/Fabric, and Copilot Agent Kit usage land in a single, searchable,
+  permission-aware view instead of separate exports you reconcile by hand.
 
 ## What it does
 
@@ -83,7 +82,6 @@ APIs your tenant already has:
 - **Power Platform inventory** — environments, apps, flows, and their owners
 - **Power BI / Fabric inventory** — workspaces, reports, dashboards, and
   sensitivity labels, via the Power BI Admin / Scanner API
-- **CoE Starter Kit data**, if you run it, via Dataverse
 - **Copilot Agent Kit usage** — daily Copilot credit consumption, via
   Dataverse
 
@@ -104,7 +102,6 @@ Express API (App Service or local :7071)
     ├── PostgreSQL (projects, components, inventory, jobs, …)
     ├── Power Platform Inventory API (delegated refresh token)  → inventory_sync
     ├── Power BI Admin / Scanner API (service principal)         → powerbi_inventory_sync
-    ├── CoE Starter Kit via Dataverse (optional app-only SP)      → coe_sync
     └── Copilot Agent Kit Dataverse (optional app-only SP)       → copilot_kit_usage_sync
 ```
 
@@ -148,8 +145,8 @@ and talks to the live API (memory store if `DATABASE_URL` is unset).
 
 Local mock mode is the five-minute version. For a real deployment — your own
 Microsoft Entra app registrations, Azure infrastructure via Terraform,
-PostgreSQL, and connecting Power Platform / Power BI / CoE Starter Kit /
-Copilot Agent Kit sync — see [`DEPLOYMENT.md`](DEPLOYMENT.md).
+PostgreSQL, and connecting Power Platform / Power BI / Copilot Agent Kit
+sync — see [`DEPLOYMENT.md`](DEPLOYMENT.md).
 
 ## Tech stack
 
