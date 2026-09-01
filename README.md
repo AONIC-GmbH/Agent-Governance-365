@@ -48,8 +48,8 @@ this exists." That gap shows up as a few concrete, recurring problems:
 - **No Copilot cost visibility** — Copilot Credits and Power BI capacity
   consumption aren't tracked next to who owns what and why.
 
-Agent Governance 365 closes that gap as an open, self-hosted tool you run in
-your own Azure subscription and your own Microsoft Entra tenant.
+Agent Governance 365 closes that gap by bringing ownership, governance, and
+cost together in one self-hosted place.
 
 ## How it's different
 
@@ -58,16 +58,14 @@ kit you have to stitch together yourself, or a vendor-hosted SaaS platform
 that asks for its own consent grant into your tenant and a per-seat or
 per-agent subscription. Agent Governance 365 takes a different approach:
 
-- **Self-hosted, not vendor-hosted** — it runs in your own Azure
-  subscription against your own PostgreSQL database. Your inventory,
-  ownership, and Copilot cost data never leave infrastructure you control.
+- **Self-hosted, not vendor-hosted** — your inventory, ownership, and
+  Copilot cost data stay in infrastructure you control, not a vendor's cloud.
 - **Open source, not a black box** — MIT-licensed, so your security or
   platform team can read, audit, and extend every line that touches your
   tenant data instead of trusting an opaque third-party connector.
 - **No per-seat or per-agent licensing** — there's no subscription; the only
   ongoing cost is the Azure infrastructure you're already running.
-- **Built on your existing trust boundary** — it signs in through the
-  Microsoft Entra ID tenant you already have and reads Power Platform, Power
+- **Built on your existing trust boundary** — it reads Power Platform, Power
   BI, and Copilot Agent Kit data through Microsoft's own APIs, rather than
   requiring a new external consent grant.
 - **One inventory across sources, not five admin centers** — Power Platform,
@@ -86,7 +84,7 @@ APIs your tenant already has:
   Dataverse
 
 ...and gives your team a single, searchable, permission-aware view of all of
-it, with sign-in through your own Microsoft Entra ID tenant.
+it.
 
 Every inventory source is optional and independent — run Agent Governance
 365 with none of them connected (core project/component tracking still
