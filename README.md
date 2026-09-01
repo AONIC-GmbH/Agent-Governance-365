@@ -11,6 +11,8 @@ It runs entirely in your own Azure subscription — sign-in through your own
 Nothing about your tenant's agents, apps, or reports passes through a
 third party.
 
+![Agent Governance 365 demo — Copilot agent, Power Platform, and Power BI inventory dashboard](docs/agent-governance-365-demo.gif)
+
 ---
 
 ## Table of contents
@@ -22,7 +24,6 @@ third party.
 - [Quick start](#quick-start)
 - [Full deployment guide](#full-deployment-guide)
 - [Tech stack](#tech-stack)
-- [Screenshots](#screenshots)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [License](#license)
@@ -156,10 +157,6 @@ React, Vite, and MSAL on the frontend; Node.js and Express on the backend;
 PostgreSQL for storage; Microsoft Entra ID for authentication; Terraform for
 Azure infrastructure (App Service, Static Web Apps, Postgres Flexible
 Server, Key Vault); GitHub Actions for CI/CD.
-
-## Screenshots
-
-![Agent Governance 365 demo — Copilot agent, Power Platform, and Power BI inventory dashboard](docs/agent-governance-365-demo.gif)
 
 ## Roadmap
 
