@@ -1,6 +1,7 @@
 # Nightly job: GET INTERNAL-JOB-TRIGGER-SECRET, then POST inventory_sync only.
-# Additional POSTs (powerbi_inventory_sync, copilot_kit_usage_sync) are added in
-# the Logic App designer when those inventories are needed — see README §5.3.
+# Additional POSTs (powerbi_inventory_sync, coe_sync, copilot_kit_usage_sync) are
+# added in the Logic App designer when those inventories are needed — see
+# DEPLOYMENT.md §5.3.
 
 resource "azurerm_logic_app_workflow" "nightly" {
   count               = var.enable_nightly_jobs ? 1 : 0

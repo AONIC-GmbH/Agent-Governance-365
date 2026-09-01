@@ -70,6 +70,6 @@ output "next_steps" {
          VITE_API_BASE_URL=https://${azurerm_linux_web_app.api.default_hostname}
          VITE_ENTRA_TENANT_ID / VITE_ENTRA_CLIENT_ID
     8. Optional: store PP_REFRESH_TOKEN in Key Vault and set a Key Vault reference on the App Service
-    9. Nightly Logic App (if enabled) GETs INTERNAL-JOB-TRIGGER-SECRET then POSTs inventory_sync only. Add extra POSTs in the designer for Power BI or Copilot Kit — see README §5.3.
+    9. Nightly Logic App (if enabled) GETs INTERNAL-JOB-TRIGGER-SECRET then POSTs inventory_sync only. Add extra POSTs in the designer for Power BI, CoE Starter Kit, or Copilot Kit — see DEPLOYMENT.md §5.3.
   EOT
 }

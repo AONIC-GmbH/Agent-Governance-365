@@ -75,7 +75,7 @@ Add the Static Web App hostname to the Entra SPA redirect URIs and keep
 `ALLOWED_ORIGINS` in sync (Terraform sets it from the SWA hostname).
 
 Entra app registrations, Power Platform refresh tokens, and Power BI / Dataverse
-secrets are **not** created here — see the root README.
+secrets are **not** created here — see [`DEPLOYMENT.md`](../DEPLOYMENT.md).
 
 ## Remote state (optional)
 
