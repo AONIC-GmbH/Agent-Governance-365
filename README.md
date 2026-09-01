@@ -6,13 +6,10 @@
 [![Node](https://img.shields.io/badge/node-22%2B-brightgreen)](package.json)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blueviolet)](#contributing)
 
-Copilot agents, Power Platform apps and flows, and Power BI workspaces get
-created faster than most IT and governance teams can track them — scattered
-across separate admin centers, with no single place to answer *what exists,
-who owns it, what can it access, and what does it cost.* Agent Governance 365
-is a **self-hosted** registry that answers those questions from one place,
-backed by your own **Microsoft Entra ID** tenant and your own **PostgreSQL**
-database — not a vendor-hosted black box.
+It runs entirely in your own Azure subscription — sign-in through your own
+**Microsoft Entra ID** tenant, storage in your own **PostgreSQL** database.
+Nothing about your tenant's agents, apps, or reports passes through a
+third party.
 
 ---
 
