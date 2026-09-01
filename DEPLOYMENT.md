@@ -15,10 +15,9 @@ an overview of what Agent Governance 365 does.
 - Node.js 22+ and npm
 - A Microsoft Entra (Azure AD) tenant you can register apps in
 - (Production) Azure subscription for Postgres, App Service, Static Web Apps
-- (Optional) Power Platform admin rights for inventory sync
+- Power Platform admin rights for inventory sync
 - (Optional) Fabric / Power BI tenant admin API access for Power BI sync
-- (Optional) Dataverse access to a CoE Starter Kit environment for CoE sync
-- (Optional) Dataverse access to a Copilot Agent Kit environment for usage/credits sync
+- Dataverse access to a Copilot Agent Kit environment for usage/credits sync
 
 ---
 
@@ -94,7 +93,7 @@ ENTRA_CLIENT_SECRET=<secret>
 Without this, directory search returns empty results; profiles already in the
 DB still work.
 
-### 2.3 Power Platform inventory sync (optional but needed for PP inventory)
+### 2.3 Power Platform inventory sync
 
 Inventory Resource Query requires **delegated** auth (not app-only).
 
@@ -134,33 +133,11 @@ PBI_CLIENT_SECRET=<secret>
 PBI_API_BASE_URL=https://api.powerbi.com
 ```
 
-### 2.5 CoE Starter Kit sync (optional)
+### 2.5 Copilot Agent Kit usage
 
-If you run the Power Platform Center of Excellence (CoE) Starter Kit, this
-job reads CoE Dataverse tables (environments, apps, cloud flows, chatbots/
-agents) via a service principal — Dataverse supports app-only auth, so this
-powers the unattended nightly sync. Add the app registration as an
-**Application User** in the CoE environment with a security role that can
-read the CoE tables.
-
-```env
-DATAVERSE_URL=https://orgXXXXXXXX.crm.dynamics.com
-DATAVERSE_TENANT_ID=<tenant-id>
-DATAVERSE_CLIENT_ID=<sp-client-id>
-DATAVERSE_CLIENT_SECRET=<secret>
-```
-
-Tenant/client/secret fall back to `PP_*` when unset, so you can reuse the
-same SP. Leave `DATAVERSE_URL` empty to skip this job. Optionally override the
-tables ingested with `COE_TABLES` (JSON array) — see
-[`backend/.env.example`](backend/.env.example).
-
-### 2.6 Copilot Agent Kit usage (optional)
-
-Inventory does **not** come from the CoE Starter Kit. Copilot credit usage is
-read from a separate Agent Kit Dataverse table `cat_agentusagehistories`. Add
-the app registration as an Application User in that environment with read
-access:
+Copilot credit usage is read from the Agent Kit Dataverse table
+`cat_agentusagehistories`. Add the app registration as an Application User in
+that environment with read access:
 
 ```env
 COPILOT_KIT_DATAVERSE_URL=https://orgXXXXXXXX.crm.dynamics.com
@@ -169,7 +146,7 @@ COPILOT_KIT_DATAVERSE_CLIENT_ID=<sp-client-id>
 COPILOT_KIT_DATAVERSE_CLIENT_SECRET=<secret>
 ```
 
-Tenant/client/secret fall back to `DATAVERSE_*` or `PP_*` when unset. Leave
+Tenant/client/secret fall back to `PP_*` when unset. Leave
 `COPILOT_KIT_DATAVERSE_URL` empty to skip this job.
 
 ---
@@ -207,7 +184,7 @@ Copy templates and fill for your environment:
 | `INTERNAL_JOB_TRIGGER_SECRET` | Shared secret for `POST /internal/jobs/:jobType/run` |
 
 See [`backend/.env.example`](backend/.env.example) for Power Platform, Power BI,
-CoE Starter Kit, Copilot Agent Kit, and Key Vault reference patterns.
+Copilot Agent Kit, and Key Vault reference patterns.
 
 ---
 
@@ -287,7 +264,7 @@ See [`infra/README.md`](infra/README.md). Typical layout (names are examples —
    - `ENTRA_TENANT_ID`, `ENTRA_CLIENT_ID`
    - `DEFAULT_TENANT_ID`
    - `ALLOWED_ORIGINS=https://<your-swa-hostname>`
-   - `PP_*` / `PBI_*` / `DATAVERSE_*` / `COPILOT_KIT_DATAVERSE_*` as needed
+   - `PP_*` / `PBI_*` / `COPILOT_KIT_DATAVERSE_*` as needed
    - `INTERNAL_JOB_TRIGGER_SECRET` (plain or Key Vault reference)
 5. Key Vault reference form:
 
@@ -348,7 +325,6 @@ Terraform (`enable_nightly_jobs`) provisions **only** this flow: GET secret, the
 |-----------|----------------|
 | `/internal/jobs/inventory_sync/run` | Power Platform inventory (included in Terraform) |
 | `/internal/jobs/powerbi_inventory_sync/run` | Power BI / Fabric workspaces, reports, dashboards |
-| `/internal/jobs/coe_sync/run` | CoE Starter Kit data (environments, apps, flows, agents) |
 | `/internal/jobs/copilot_kit_usage_sync/run` | Copilot Agent Kit usage/credits |
 
 Each extra action should `runAfter` the GET secret (or the previous POST). Skip any job whose connector is not configured on App Service.
@@ -377,9 +353,10 @@ If the secret is unset on App Service, the internal route returns **503**. A 401
 6. [ ] Frontend SWA build with production `VITE_*`
 7. [ ] CORS `ALLOWED_ORIGINS` + Entra redirects match SWA URL
 8. [ ] Manual login test on SWA URL
-9. [ ] (Optional) Bootstrap PP refresh token → Key Vault
+9. [ ] Bootstrap PP refresh token → Key Vault
 10. [ ] (Optional) Logic App nightly schedule (Terraform: GET secret + `inventory_sync`; extra job POSTs in the designer if needed)
-11. [ ] (Optional) Power BI, CoE Starter Kit, and/or Copilot Agent Kit credentials
+11. [ ] Copilot Agent Kit credentials configured
+12. [ ] (Optional) Power BI credentials configured
 
 ### Ongoing
 
@@ -399,7 +376,6 @@ If the secret is unset on App Service, the internal route returns **503**. A 401
 |----------|---------|
 | `inventory_sync` | Power Platform resource inventory → `inventory_items` / environments |
 | `powerbi_inventory_sync` | Power BI workspaces/reports/dashboards |
-| `coe_sync` | CoE Starter Kit data (environments, apps, cloud flows, chatbots/agents) via Dataverse |
 | `copilot_kit_usage_sync` | Copilot Agent Kit usage/credits from Dataverse |
 | `components_import` | Promote inventory into curated components (also chained after successful inventory syncs when Admin import settings are set) |
 
