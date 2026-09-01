@@ -6,6 +6,11 @@
 [![Node](https://img.shields.io/badge/node-22%2B-brightgreen)](package.json)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blueviolet)](#contributing)
 
+In practice, that means every project carries a business unit, Copilot and
+Power BI cost roll up by business unit, and the compliance questionnaire
+shown at project registration is admin-configurable — no code change needed
+to add a question.
+
 It runs entirely in your own Azure subscription — sign-in through your own
 **Microsoft Entra ID** tenant, storage in your own **PostgreSQL** database.
 Nothing about your tenant's agents, apps, or reports passes through a
