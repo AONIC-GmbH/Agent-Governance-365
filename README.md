@@ -1,6 +1,6 @@
 # Agent Governance 365
 
-**Open-source inventory and governance for Microsoft 365 Copilot agents, Power Platform, and Power BI.**
+**Shadow AI and Shadow IT have a price tag. Agent Governance 365 is the organisational governance layer for your Microsoft 365 tenant — it inventories every Copilot Studio agent, Power Platform, and Power BI asset, then tags each one with an owner, a governance status, a cost, and a business unit.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-22%2B-brightgreen)](package.json)
@@ -19,6 +19,7 @@ database — not a vendor-hosted black box.
 ## Table of contents
 
 - [Why Agent Governance 365](#why-agent-governance-365)
+- [How it's different](#how-its-different)
 - [What it does](#what-it-does)
 - [Architecture](#architecture)
 - [Quick start](#quick-start)
@@ -46,11 +47,35 @@ this exists." That gap shows up as a few concrete, recurring problems:
 - **Security and compliance blind spots** — over-permissioned agents,
   unclear data access, and Power BI content without a sensitivity label are
   hard to catch across several separate tools.
-- **No cost visibility** — Copilot Credits and Power BI capacity consumption
-  aren't tracked next to who owns what and why.
+- **No Copilot cost visibility** — Copilot Credits and Power BI capacity
+  consumption aren't tracked next to who owns what and why.
 
 Agent Governance 365 closes that gap as an open, self-hosted tool you run in
 your own Azure subscription and your own Microsoft Entra tenant.
+
+## How it's different
+
+Most Copilot and Power Platform governance tools are either a DIY starter
+kit you have to stitch together yourself, or a vendor-hosted SaaS platform
+that asks for its own consent grant into your tenant and a per-seat or
+per-agent subscription. Agent Governance 365 takes a different approach:
+
+- **Self-hosted, not vendor-hosted** — it runs in your own Azure
+  subscription against your own PostgreSQL database. Your inventory,
+  ownership, and Copilot cost data never leave infrastructure you control.
+- **Open source, not a black box** — MIT-licensed, so your security or
+  platform team can read, audit, and extend every line that touches your
+  tenant data instead of trusting an opaque third-party connector.
+- **No per-seat or per-agent licensing** — there's no subscription; the only
+  ongoing cost is the Azure infrastructure you're already running.
+- **Built on your existing trust boundary** — it signs in through the
+  Microsoft Entra ID tenant you already have and reads Power Platform, Power
+  BI, CoE Starter Kit, and Copilot Agent Kit data through Microsoft's own
+  APIs, rather than requiring a new external consent grant.
+- **One inventory across sources, not five admin centers** — Power Platform,
+  Power BI/Fabric, CoE Starter Kit, and Copilot Agent Kit usage land in a
+  single, searchable, permission-aware view instead of separate exports you
+  reconcile by hand.
 
 ## What it does
 
