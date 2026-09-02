@@ -8,8 +8,8 @@
 
 In practice, that means every project carries a business unit, Copilot and
 Power BI cost roll up by business unit, and the compliance questionnaire
-shown at project registration is admin-configurable — no code change needed
-to add a question.
+shown at project registration is configurable from the Admin UI — no
+developer required.
 
 It runs entirely in your own Azure subscription — sign-in through your own
 **Microsoft Entra ID** tenant, storage in your own **PostgreSQL** database.
@@ -59,12 +59,14 @@ cost together in one self-hosted place.
 ## How it's different
 
 Most Copilot and Power Platform governance tools are either a DIY starter
-kit you have to stitch together yourself, or a vendor-hosted SaaS platform
-that asks for its own consent grant into your tenant and a per-seat or
-per-agent subscription. Agent Governance 365 takes a different approach:
+kit you have to assemble yourself, or a vendor-hosted SaaS platform that
+asks for its own consent grant into your tenant and a per-seat or per-agent
+subscription. Agent Governance 365 takes a different approach:
 
 - **Self-hosted, not vendor-hosted** — your inventory, ownership, and
-  Copilot cost data stay in infrastructure you control, not a vendor's cloud.
+  Copilot cost data stay in infrastructure you control, not a vendor's
+  cloud. Data residency follows your own Azure region — nothing about it
+  is decided by a third party.
 - **Open source, not a black box** — MIT-licensed, so your security or
   platform team can read, audit, and extend every line that touches your
   tenant data instead of trusting an opaque third-party connector.
