@@ -6,10 +6,13 @@
 [![Node](https://img.shields.io/badge/node-22%2B-brightgreen)](package.json)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blueviolet)](#contributing)
 
-In practice, that means every project carries a business unit, Copilot and
-Power BI cost roll up by business unit, and the compliance questionnaire
-shown at project registration is configurable from the Admin UI — no
-developer required.
+In practice, that means every Power Platform, Power BI, and Copilot Studio
+asset in your tenant is accounted for, with a registered owner and
+collaborators your team can reach directly. That registration data —
+ownership, business unit, governance and compliance answers — is available
+through the API, so your team can build custom automation on top of it:
+alerting when an asset hits a cost or capacity threshold, defining next
+steps for that scenario, or flagging assets left without a live owner.
 
 It runs entirely in your own Azure subscription — sign-in through your own
 **Microsoft Entra ID** tenant, storage in your own **PostgreSQL** database.
