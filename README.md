@@ -1,6 +1,6 @@
 # Agent Governance 365
 
-**Shadow AI and Shadow IT have a price tag. Agent Governance 365 is the organisational governance layer for your Microsoft 365 tenant — it inventories every Copilot Studio agent, Power Platform, and Power BI asset, so citizen developers can register each one under a project with an owner, a business unit, a governance questionnaire, and a cost roll-up.**
+**Shadow AI and Shadow IT have a price tag. Agent Governance 365 is the organisational governance layer for your Microsoft 365 tenant — it inventories every Copilot Studio agent, Power Platform, and Power BI asset, allowing citizen developers to register them under a project with an owner, collaborators, a business unit, and a governance or compliance questionnaire.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-22%2B-brightgreen)](package.json)
