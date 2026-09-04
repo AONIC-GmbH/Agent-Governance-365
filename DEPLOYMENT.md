@@ -17,7 +17,9 @@ an overview of what Agent Governance 365 does.
 - (Production) Azure subscription for Postgres, App Service, Static Web Apps
 - Power Platform admin rights for inventory sync
 - (Optional) Fabric / Power BI tenant admin API access for Power BI sync
-- Dataverse access to a Copilot Agent Kit environment for usage/credits sync
+- The [Copilot Agent Kit](https://learn.microsoft.com/en-us/microsoft-copilot-studio/guidance/kit-install)
+  installed in a Dataverse environment, plus access to that environment, for
+  usage/credits sync
 
 ---
 
@@ -135,9 +137,11 @@ PBI_API_BASE_URL=https://api.powerbi.com
 
 ### 2.5 Copilot Agent Kit usage
 
-Copilot credit usage is read from the Agent Kit Dataverse table
-`cat_agentusagehistories`. Add the app registration as an Application User in
-that environment with read access:
+This requires the [Copilot Agent Kit](https://learn.microsoft.com/en-us/microsoft-copilot-studio/guidance/kit-install)
+to already be installed in a Dataverse environment — installing it is what
+creates the `cat_agentusagehistories` table this job reads Copilot credit
+usage from. Once it's installed, add the app registration as an Application
+User in that environment with read access:
 
 ```env
 COPILOT_KIT_DATAVERSE_URL=https://orgXXXXXXXX.crm.dynamics.com
