@@ -12,7 +12,7 @@ collaborators your team can reach directly. That registration data —
 ownership, business unit, governance and compliance answers — is available
 through the API, so your team can build custom automation on top of it:
 alerting when an asset hits a cost or capacity threshold, defining next
-steps for that scenario, or flagging assets left without a live owner.
+steps for that scenario, or flagging assets left without an active owner.
 
 It runs entirely in your own Azure subscription — sign-in through your own
 **Microsoft Entra ID** tenant, storage in your own **PostgreSQL** database.
@@ -34,6 +34,7 @@ third party.
 - [Tech stack](#tech-stack)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
+- [Enterprise Support](#enterprise-support)
 - [License](#license)
 
 ---
@@ -179,6 +180,19 @@ significant change before submitting a PR.
 Public OSS repos should keep **CI (lint/test)** in-tree; keep **org-specific
 Azure deploy workflows** (resource names, publish profiles) in a **private**
 fork or separate private repo so secrets and hostnames are not published.
+
+## Enterprise Support
+
+Self-hosting a pilot is one thing. Rolling this out across every business
+unit, wiring the Entra app registrations and Azure infrastructure for
+production, or building the cost-alerting and automation workflows the API
+enables — that's where most teams want an experienced hand.
+
+[AONIC](https://aonic.de/en/contact) built and maintains Agent Governance
+365, and offers enterprise support for deployment, customization, and
+broader Microsoft 365 and Copilot governance strategy.
+
+**[AONIC – AI-First Beratung für Ihre Digital Transformation →](https://aonic.de/en/contact)**
 
 ## License
 
