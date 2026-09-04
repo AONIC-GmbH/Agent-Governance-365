@@ -192,7 +192,7 @@ enables — that's where most teams want an experienced hand.
 365, and offers enterprise support for deployment, customization, and
 broader Microsoft 365 and Copilot governance strategy.
 
-**[AONIC – AI-First Beratung für Ihre Digital Transformation →](https://aonic.de/en/contact)**
+**(https://aonic.de/en/contact)**
 
 ## License
 
