@@ -188,7 +188,7 @@ unit, wiring the Entra app registrations and Azure infrastructure for
 production, or building the cost-alerting and automation workflows the API
 enables — that's where most teams want an experienced hand.
 
-[AONIC](https://aonic.de/en/contact) built and maintains Agent Governance
+[AONIC](https://aonic.de/en) built and maintains Agent Governance
 365, and offers enterprise support for deployment, customization, and
 broader Microsoft 365 and Copilot governance strategy.
 
